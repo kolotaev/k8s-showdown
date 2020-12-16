@@ -1,0 +1,2 @@
+skaf-version:
+	./skaffold version
