@@ -1,0 +1,33 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+
+build:
+  tagPolicy:
+    sha256: {}
+  local:
+    useBuildkit: true
+  # defines where to find the code at build time and where to push the resulting image
+  artifacts:
+  - image: localhost:5000/time-srv
+    context: services/time
+    sync:
+      infer:
+      - '**/*'
+  # - image: greeter_service
+  #   context: services/greeter
+  #   sync:
+  #     infer:
+  #     - '**/*'
+  # - image: catalog_service
+  #   context: services/catalog
+  #   sync:
+  #     infer:
+  #     - '**/*'
+
+# defines the Kubernetes manifests to deploy on each run
+deploy:
+  kubectl:
+    manifests:
+    - ./services/time/k8s/*
+    - ./services/greeter/k8s/*
+    - ./services/catalog/k8s/*

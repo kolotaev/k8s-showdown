@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: s-time
+  # annotations:
+  #   kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: time.showdown
+    http:
+      paths:
+      - backend:
+          serviceName: s-time
+          servicePort: main
+        path: /
