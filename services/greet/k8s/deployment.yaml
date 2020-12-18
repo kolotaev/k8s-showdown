@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: time
+  name: greet
   namespace: stage
 spec:
   selector:
     matchLabels:
-      app: s-time
+      app: s-greet
   template:
     metadata:
       labels:
-        app: s-time
+        app: s-greet
     spec:
       containers:
-      - name: s-time-cntr
-        image: localhost:5000/time-srv
+      - name: s-greet-cntr
+        image: localhost:5000/greet-srv
         ports:
-        - containerPort: 9001
+        - containerPort: 9002

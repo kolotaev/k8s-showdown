@@ -1,16 +1,16 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: s-time
+  name: s-greet
   namespace: stage
   # annotations:
   #   kubernetes.io/ingress.class: nginx
 spec:
   rules:
-  - host: time.showdown
+  - host: greet.showdown
     http:
       paths:
       - backend:
-          serviceName: s-time
+          serviceName: s-greet
           servicePort: main
         path: /

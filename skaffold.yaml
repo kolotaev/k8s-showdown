@@ -13,11 +13,11 @@ build:
     sync:
       infer:
       - '**/*'
-  # - image: greeter_service
-  #   context: services/greeter
-  #   sync:
-  #     infer:
-  #     - '**/*'
+  - image: localhost:5000/greet-srv
+    context: services/greet
+    sync:
+      infer:
+      - '**/*'
   # - image: catalog_service
   #   context: services/catalog
   #   sync:
@@ -29,5 +29,5 @@ deploy:
   kubectl:
     manifests:
     - ./services/time/k8s/*
-    - ./services/greeter/k8s/*
-    - ./services/catalog/k8s/*
+    - ./services/greet/k8s/*
+    # - ./services/catalog/k8s/*

@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: s-time
+  name: s-greet
   namespace: stage
 spec:
   type: NodePort
   ports:
   - name: main
-    port: 8082
+    port: 8081
     protocol: TCP
-    targetPort: 9001
+    targetPort: 9002
   selector:
-    app: s-time
+    app: s-greet

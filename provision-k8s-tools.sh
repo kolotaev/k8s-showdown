@@ -44,3 +44,8 @@ helm install metallb bitnami/metallb --namespace kube-system \
 helm install nginx-ingress stable/nginx-ingress --namespace kube-system \
     --set defaultBackend.enabled=false
 kubectl get services  -n kube-system -l app=nginx-ingress -o wide
+
+# Setup bash
+echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc
+echo "alias kc=kubectl" >> ~/.bashrc
+echo "alias kcs=\"kubectl -n=stage \"" >> ~/.bashrc
