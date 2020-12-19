@@ -1,22 +1,21 @@
-export K3S_KUBECONFIG_MODE="644"
-export INSTALL_K3S_EXEC=" --no-deploy servicelb --no-deploy traefik"
-
-curl -sfL https://get.k3s.io | sh -
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-
 MY_IP=`hostname -I | cut -d' ' -f1`
-
-# check it's running
-kubectl get nodes -o wide
 
 # Install docker
 sudo snap install docker
 sudo usermod -aG docker ${USER}
 sudo chmod 666 /var/run/docker.sock
 
-# Docker local registry
-# docker volume create local_registry
-# docker container run -d --name registry.local -v local_registry:/var/lib/registry --restart always -p 5000:5000 registry:2
+# Install Docker local registry (needed for Skaffold to build images and k3s to consume them with containerd)
+docker volume create local_registry
+docker container run -d --name registry.local -v local_registry:/var/lib/registry --restart always -p 5000:5000 registry:2
+
+# Install k3s
+export K3S_KUBECONFIG_MODE="644"
+export INSTALL_K3S_EXEC=" --no-deploy servicelb --no-deploy traefik"
+curl -sfL https://get.k3s.io | sh -
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+# check it's running
+kubectl get nodes -o wide
 
 # Install Helm
 mkdir -p /tmp/k8s-tools-install
