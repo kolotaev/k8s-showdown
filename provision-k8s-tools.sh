@@ -12,6 +12,7 @@ docker container run -d --name registry.local -v local_registry:/var/lib/registr
 # Install k3s
 export K3S_KUBECONFIG_MODE="644"
 export INSTALL_K3S_EXEC=" --no-deploy servicelb --no-deploy traefik"
+# export INSTALL_K3S_EXEC=" --docker --no-deploy servicelb --no-deploy traefik"
 curl -sfL https://get.k3s.io | sh -
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 # check it's running
