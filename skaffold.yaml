@@ -18,11 +18,11 @@ build:
     sync:
       infer:
       - '**/*'
-  # - image: catalog_service
-  #   context: services/catalog
-  #   sync:
-  #     infer:
-  #     - '**/*'
+  - image: localhost:5000/catalog-srv
+    context: services/catalog
+    sync:
+      infer:
+      - '**/*'
 
 # defines the Kubernetes manifests to deploy on each run
 deploy:
@@ -30,4 +30,4 @@ deploy:
     manifests:
     - ./services/time/k8s/*
     - ./services/greet/k8s/*
-    # - ./services/catalog/k8s/*
+    - ./services/catalog/k8s/*

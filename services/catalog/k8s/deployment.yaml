@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog
+  namespace: stage
+spec:
+  selector:
+    matchLabels:
+      app: s-catalog
+  template:
+    metadata:
+      labels:
+        app: s-catalog
+    spec:
+      containers:
+      - name: s-catalog-cntr
+        image: localhost:5000/catalog-srv
+        ports:
+        - name: http
+          containerPort: 9003

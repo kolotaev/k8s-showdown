@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: s-time
   namespace: stage
-  # annotations:
-  #   kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - host: time.showdown

@@ -1,14 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: s-greet
+  name: s-catalog
   namespace: stage
 spec:
   rules:
-  - host: greet.showdown
+  - host: catalog.showdown
     http:
       paths:
       - backend:
-          serviceName: s-greet
+          serviceName: s-catalog
           servicePort: main
         path: /
