@@ -2,12 +2,6 @@ MY_IP=`hostname -I | cut -d' ' -f1`
 
 # Install docker
 sudo snap install docker
-sudo usermod -aG docker ${USER}
-sudo chmod 666 /var/run/docker.sock
-
-# Install Docker local registry (needed for Skaffold to build images and k3s to consume them with containerd)
-docker volume create local_registry
-docker container run -d --name registry.local -v local_registry:/var/lib/registry --restart always -p 5000:5000 registry:2
 
 # Install k3s
 export K3S_KUBECONFIG_MODE="644"
@@ -44,6 +38,17 @@ helm install metallb bitnami/metallb --namespace kube-system \
 helm install nginx-ingress stable/nginx-ingress --namespace kube-system \
     --set defaultBackend.enabled=false
 kubectl get services  -n kube-system -l app=nginx-ingress -o wide
+
+
+# Set up docker permissions
+sudo usermod -aG docker ${USER}
+sudo chmod 666 /var/run/docker.sock
+# Install Docker local registry (needed for Skaffold to build images and k3s to consume them with containerd)
+docker volume create local_registry
+docker container run -d --name registry.local -v local_registry:/var/lib/registry --restart always -p 5000:5000 registry:2
+
+# Create stage k8s namespace
+kubectl create ns stage
 
 # Setup bash
 echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc
