@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: s-time
@@ -8,7 +8,10 @@ spec:
   - host: time.showdown
     http:
       paths:
-      - backend:
-          serviceName: s-time
-          servicePort: main
-        path: /
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: s-time
+            port:
+              name: main
