@@ -7,7 +7,7 @@ spec:
   type: NodePort
   ports:
   - name: main
-    port: 8081
+    port: 80
     protocol: TCP
     targetPort: 9002
   selector:

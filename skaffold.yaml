@@ -12,17 +12,17 @@ build:
     context: services/time
     sync:
       infer:
-      - '**/*'
+      - 'services/time/*'
   - image: localhost:5000/greet-srv
     context: services/greet
     sync:
       infer:
-      - '**/*'
+      - 'services/greet/*'
   - image: localhost:5000/catalog-srv
     context: services/catalog
     sync:
       infer:
-      - '**/*'
+      - 'services/catalog/*'
 
 # defines the Kubernetes manifests to deploy on each run
 deploy:

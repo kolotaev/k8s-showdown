@@ -18,3 +18,9 @@ spec:
         ports:
         - name: http
           containerPort: 9003
+        env:
+          - name: GREET_URL
+            value: s-greet
+          - name: TIME_URL
+            # also: s-time.stage.svc.cluster.local
+            value: s-time.stage.svc.cluster.local
