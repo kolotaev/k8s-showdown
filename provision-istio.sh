@@ -8,3 +8,6 @@ istioctl install --set profile=demo -y
 
 # Istio injection
 kubectl label namespace stage istio-injection=enabled
+
+# Unnstall istio
+# istioctl x uninstall --purge

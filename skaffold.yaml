@@ -23,6 +23,11 @@ build:
     sync:
       infer:
       - 'services/catalog/*'
+  - image: localhost:5000/worky-srv
+    context: services/worky
+    sync:
+      infer:
+      - 'services/worky/*'
 
 # defines the Kubernetes manifests to deploy on each run
 deploy:
@@ -31,3 +36,4 @@ deploy:
     - ./services/time/k8s/*
     - ./services/greet/k8s/*
     - ./services/catalog/k8s/*
+    - ./services/worky/k8s/*

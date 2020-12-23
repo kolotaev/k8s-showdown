@@ -24,3 +24,7 @@ spec:
           - name: TIME_URL
             # also: s-time.stage.svc.cluster.local
             value: s-time.stage.svc.cluster.local
+          - name: NODE_IP
+            value: "192.168.64.3"
+          - name: WORKY_PORT
+            value: "30012"

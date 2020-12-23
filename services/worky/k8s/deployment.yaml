@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worky
+  namespace: stage
+spec:
+  selector:
+    matchLabels:
+      app: s-worky
+  template:
+    metadata:
+      labels:
+        app: s-worky
+    spec:
+      containers:
+      - name: s-worky-cntr
+        image: localhost:5000/worky-srv
+        ports:
+        - name: http
+          containerPort: 9005
+        env:
+          - name: SELF_ADDR
+            value: http://192.168.64.3:30012
